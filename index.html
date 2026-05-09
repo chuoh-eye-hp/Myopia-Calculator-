@@ -71,7 +71,7 @@
       font-size: 14px; font-weight: 600; color: var(--sub); display: none;
     }
 
-    .preview-shell { max-width: 980px; margin: 0 auto; }
+    .preview-shell { max-width: 1180px; margin: 0 auto; }
     .preview-tabs { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin: 0 0 14px; }
     .preview-tab {
       border: 1px solid var(--line); background: white; color: var(--text); border-radius: 999px;
@@ -133,10 +133,163 @@
     .legend .stop-line { background: #fff7ed; color: #c2410c; border-color: #fdba74; }
 
     .graph-wrap {
-      width: 100%; min-height: 320px; border-radius: 18px; background: linear-gradient(to bottom, #ffffff, #f8fafc);
+      width: 100%; min-height: 400px; border-radius: 18px; background: linear-gradient(to bottom, #ffffff, #f8fafc);
       border: 1px solid #e2e8f0; overflow: hidden;
     }
-    .graph-wrap svg { display: block; width: 100%; height: 320px; }
+    .graph-wrap svg { display: block; width: 100%; height: 400px; }
+
+    .graph-sim-row {
+      display: block; margin-bottom: 18px;
+    }
+    .vision-sim-card {
+      border: 1px solid #e2e8f0; border-radius: 18px; background: #ffffff;
+      padding: 16px; display: flex; flex-direction: column; gap: 12px; min-width: 0;
+    }
+    .vision-sim-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+    .vision-sim-title { font-size: 13px; font-weight: 900; color: var(--text); line-height: 1.4; }
+    .vision-sim-sub { font-size: 12px; color: var(--sub); margin-top: 3px; line-height: 1.4; }
+    .vision-degree-badge {
+      border-radius: 999px; padding: 7px 9px; background: #dbeafe; color: #1d4ed8;
+      font-size: 13px; font-weight: 900; white-space: nowrap;
+    }
+    .vision-scene-wrap { position: relative; overflow: hidden; border-radius: 16px; border: 1px solid #cbd5e1; background: #f8fafc; }
+    .vision-scene {
+      width: 100%; aspect-ratio: 16 / 9; display: block; position: relative; overflow: hidden;
+      transform-origin: center; transition: opacity .18s ease, transform .18s ease;
+      background: linear-gradient(180deg, #d8f2ff 0%, #eef8ff 50%, #f8fafc 100%);
+    }
+    .vision-layer {
+      position: absolute; inset: 0; transition: filter .18s ease, opacity .18s ease, transform .18s ease;
+      transform-origin: center;
+    }
+    .class-sky { position:absolute; inset:0 0 46% 0; background: linear-gradient(180deg, #d7f1ff, #f5fbff); }
+    .class-wall { position:absolute; inset:10% 0 30% 0; background: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%); }
+    .class-floor { position:absolute; inset:70% 0 0 0; background: linear-gradient(180deg, #b08968 0%, #926c4f 100%); }
+    .class-floor::before { content:""; position:absolute; inset:0; background: repeating-linear-gradient(90deg, rgba(255,255,255,.12) 0 2px, rgba(0,0,0,0) 2px 78px); opacity:.5; }
+    .window { position:absolute; top:13%; width:16%; height:22%; border-radius:10px; background: linear-gradient(180deg, #bfe9ff, #ffffff); border:5px solid #94a3b8; box-shadow: inset 0 0 0 3px rgba(255,255,255,.45); }
+    .window::before, .window::after { content:""; position:absolute; background:#94a3b8; }
+    .window::before { width:3px; top:0; bottom:0; left:50%; transform:translateX(-50%); }
+    .window::after { height:3px; left:0; right:0; top:50%; transform:translateY(-50%); }
+    .window.w1 { left:5%; } .window.w2 { left:23%; }
+    .blackboard { position:absolute; left:43%; top:12%; width:41%; height:28%; border-radius:12px; background:#14532d; border:8px solid #8b5e3c; box-shadow:0 10px 24px rgba(15,23,42,.12); }
+    .blackboard::before { content:""; position:absolute; left:4%; right:4%; bottom:7%; height:7px; border-radius:999px; background:#d6d3d1; }
+    .chalk-line { display:none; }
+    .chalk-line.l1 { top:22%; width:54%; } .chalk-line.l2 { top:40%; width:72%; } .chalk-line.l3 { top:58%; width:48%; }
+    .chalk-text { position:absolute; color:#ecfdf5; font-weight:900; letter-spacing:.04em; }
+    .chalk-text.t1 { left:18%; top:24%; font-size:24px; } .chalk-text.t2 { left:28%; top:50%; font-size:18px; } .chalk-text.t3 { display:none; }
+    .clock { position:absolute; right:8%; top:9%; width:10%; aspect-ratio:1; border-radius:50%; background:#ffffff; border:5px solid #94a3b8; box-shadow:0 4px 10px rgba(0,0,0,.08); }
+    .clock::before { content:""; position:absolute; width:3px; height:30%; background:#334155; left:50%; top:20%; transform:translateX(-50%); border-radius:999px; }
+    .clock::after { content:""; position:absolute; width:24%; height:3px; background:#334155; left:50%; top:50%; transform:translateY(-50%); border-radius:999px; }
+    .poster { position:absolute; right:4%; top:25%; width:10%; height:18%; border-radius:8px; background:#fff7ed; border:3px solid #fdba74; }
+    .poster::before { content:"保健"; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:#9a3412; font-weight:900; font-size:16px; }
+    .teacher-desk { position:absolute; left:46%; top:42%; width:34%; height:9%; background:#8b5e3c; border-radius:8px; box-shadow:0 10px 18px rgba(0,0,0,.12); }
+    .teacher-desk::before { content:""; position:absolute; left:6%; top:20%; width:28%; height:26%; border-radius:4px; background:#dbeafe; }
+    .teacher-desk::after { content:""; position:absolute; right:12%; top:18%; width:20%; height:36%; border-radius:4px; background:#fde68a; }
+    .teacher { position:absolute; left:58%; top:36%; width:12%; height:26%; }
+    .teacher .head { position:absolute; left:30%; top:0; width:34%; aspect-ratio:1; border-radius:50%; background:#f6c59c; }
+    .teacher .hair { position:absolute; left:28%; top:-2%; width:38%; height:16%; border-radius:50% 50% 40% 40%; background:#334155; }
+    .teacher .body { position:absolute; left:22%; top:16%; width:48%; height:38%; border-radius:12px; background:#2563eb; }
+    .teacher .arm-l, .teacher .arm-r { position:absolute; width:11%; height:18%; border-radius:999px; background:#f6c59c; top:22%; }
+    .teacher .arm-l { left:14%; transform:rotate(16deg); } .teacher .arm-r { right:15%; transform:rotate(-18deg); }
+    .teacher .leg-l, .teacher .leg-r { position:absolute; width:11%; height:34%; border-radius:999px; background:#1f2937; top:47%; }
+    .teacher .leg-l { left:32%; } .teacher .leg-r { right:30%; }
+    .student { position:absolute; width:12%; height:24%; }
+    .student .head { position:absolute; left:34%; top:0; width:32%; aspect-ratio:1; border-radius:50%; background:#f7c59f; }
+    .student .hair { position:absolute; left:31%; top:-1%; width:38%; height:14%; border-radius:50% 50% 40% 40%; background:#3f2a1e; }
+    .student .body { position:absolute; left:24%; top:16%; width:48%; height:34%; border-radius:14px; background:#22c55e; }
+    .student .desk { position:absolute; left:6%; right:6%; top:49%; height:20%; border-radius:10px; background:#d6b07c; border-bottom:10px solid #8b5e3c; }
+    .student .book { position:absolute; left:32%; top:54%; width:24%; height:10%; border-radius:4px; background:#dbeafe; }
+    .student.s1 { left:18%; top:48%; transform:scale(.88); }
+    .student.s2 { left:34%; top:52%; transform:scale(.98); }
+    .student.s3 { left:71%; top:49%; transform:scale(.9); }
+    .student.s4 { left:8%; top:58%; transform:scale(1.05); }
+    .student.s5 { left:26%; top:62%; transform:scale(1.15); }
+    .student.s6 { left:66%; top:61%; transform:scale(1.08); }
+    .near-desk { position:absolute; left:0; right:0; bottom:0; height:28%; background: linear-gradient(180deg, #b08968 0%, #8b5e3c 100%); box-shadow:0 -12px 24px rgba(0,0,0,.12); }
+    .near-desk::before { content:""; position:absolute; inset:0; background: linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,0) 35%); }
+    .notebook { position:absolute; left:8%; bottom:5%; width:33%; height:20%; background:#fffef8; border-radius:10px; transform:rotate(-8deg); box-shadow:0 8px 20px rgba(15,23,42,.12); border:1px solid #e5e7eb; }
+    .notebook::before { content:""; position:absolute; left:7%; right:7%; top:22%; height:2px; background:#cbd5e1; box-shadow: 0 18px 0 #cbd5e1, 0 36px 0 #cbd5e1, 0 54px 0 #cbd5e1; }
+    .notebook::after { content:"1 2 3 4 5"; position:absolute; left:10%; top:8%; color:#334155; font-size:14px; font-weight:800; letter-spacing:.12em; }
+    .worksheet { position:absolute; right:14%; bottom:8%; width:23%; height:15%; background:#ffffff; border-radius:8px; transform:rotate(8deg); box-shadow:0 8px 18px rgba(15,23,42,.1); border:1px solid #e5e7eb; }
+    .worksheet::before { content:"A B C"; position:absolute; left:14%; top:14%; font-size:16px; font-weight:900; color:#0f172a; letter-spacing:.2em; }
+    .worksheet::after { content:"近くのノート"; position:absolute; left:14%; bottom:16%; font-size:12px; font-weight:700; color:#64748b; }
+    .pencil { position:absolute; right:28%; bottom:14%; width:22%; height:10px; border-radius:999px; background: linear-gradient(90deg, #f59e0b 0 76%, #fca5a5 76% 90%, #1f2937 90% 100%); transform:rotate(-18deg); box-shadow:0 4px 8px rgba(0,0,0,.12); }
+    .eraser { position:absolute; left:44%; bottom:8%; width:10%; height:8%; border-radius:8px; background:#fecaca; box-shadow:0 6px 12px rgba(15,23,42,.08); }
+    .near-caption { display:none !important; }
+    .vision-sim-note { display: none !important; }
+    .vision-sim-text { font-size: 12px; line-height: 1.7; color: var(--sub); background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 14px; padding: 10px; }
+
+    .vision-modal {
+      position: fixed; inset: 0; z-index: 9999; display: none;
+      align-items: center; justify-content: center; padding: 20px;
+      background: rgba(15, 23, 42, .48); backdrop-filter: blur(6px);
+    }
+    .vision-modal.open { display: flex; }
+    .vision-modal-card {
+      width: min(1320px, 98vw); max-height: 94vh; overflow: auto;
+      background: #ffffff; border-radius: 26px; border: 1px solid #dbeafe;
+      box-shadow: 0 26px 70px rgba(15, 23, 42, .30);
+    }
+    .vision-modal-head {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      padding: 16px 18px; border-bottom: 1px solid #e2e8f0; background: #f8fafc;
+      position: sticky; top: 0; z-index: 2;
+    }
+    .vision-modal-title { font-size: 18px; font-weight: 900; line-height: 1.4; }
+    .vision-modal-sub { font-size: 13px; color: var(--sub); margin-top: 3px; }
+    .vision-modal-actions { display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+    .vision-modal-close, .vision-slot-clear {
+      border-radius: 999px; min-height: 42px; padding: 9px 14px;
+      background: #ffffff; border: 1px solid #cbd5e1; font-weight: 800;
+    }
+    .vision-modal-reset {
+      border-radius: 999px; min-height: 42px; padding: 9px 14px;
+      background: #eff6ff; border: 1px solid #bfdbfe; color: #1d4ed8; font-weight: 800;
+    }
+    .vision-modal-body { padding: 18px; display: grid; gap: 16px; }
+    .vision-compare-grid {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px;
+    }
+    .vision-compare-slot {
+      border: 1px solid #dbeafe; border-radius: 22px; background: #ffffff;
+      overflow: hidden; min-width: 0;
+    }
+    .vision-compare-slot.empty {
+      display:flex; align-items:center; justify-content:center;
+      min-height: 420px; background: #f8fafc; border-style: dashed;
+      color: #64748b; text-align: center; padding: 18px; font-size: 15px; line-height: 1.8;
+    }
+    .vision-slot-head {
+      display:flex; justify-content:space-between; align-items:flex-start; gap:10px;
+      padding: 14px 16px; border-bottom: 1px solid #e2e8f0; background:#f8fafc;
+    }
+    .vision-slot-label { font-size:12px; font-weight:900; color:#2563eb; letter-spacing:.04em; }
+    .vision-slot-title { font-size: 16px; font-weight: 900; line-height: 1.4; margin-top: 3px; }
+    .vision-slot-sub { font-size: 13px; color: var(--sub); margin-top: 3px; }
+    .vision-slot-degree {
+      border-radius: 999px; padding: 8px 12px; background: #dbeafe; color: #1d4ed8;
+      font-size: 17px; font-weight: 900; white-space: nowrap;
+    }
+    .vision-slot-body { padding: 14px; display:grid; gap: 12px; }
+    .vision-modal-scene {
+      border: 1px solid #cbd5e1; border-radius: 20px; overflow: hidden;
+      background: #f8fafc;
+    }
+    .vision-modal-scene .vision-scene { aspect-ratio: 16 / 9; }
+    .vision-modal-text {
+      font-size: 14px; line-height: 1.85; color: var(--sub);
+      background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 16px; padding: 12px 14px;
+    }
+    @media (max-width: 980px) {
+      .vision-compare-grid { grid-template-columns: 1fr; }
+      .vision-compare-slot.empty { min-height: 240px; }
+      .vision-modal-card { width: min(96vw, 980px); }
+    }
+
+    .vision-plot-point { cursor: pointer; }
+    .vision-plot-point .vision-hit { fill: transparent; }
+    .vision-plot-point .vision-dot { transition: r .15s ease, stroke-width .15s ease; }
+    .vision-plot-point:hover .vision-dot, .vision-plot-point.selected-vision-dot .vision-dot { r: 7; stroke-width: 4; }
     .inner-graph-tabs { display:flex; gap:8px; flex-wrap:wrap; margin:0 0 12px; }
     .inner-graph-tab {
       border: 1px solid var(--line); background: white; color: var(--text); border-radius: 999px;
@@ -161,6 +314,7 @@
       .preview-head { padding: 14px; }
       .preview-tab, .curve-preset { flex: 1 1 auto; }
       .graph-wrap svg { height: 300px; }
+      .graph-sim-row { grid-template-columns: 1fr; }
     }
     @media print {
       body { background: white; }
@@ -169,6 +323,7 @@
       .card { box-shadow: none; }
       .preview-tabs, .swipe-hint { display: none; }
       .preview-grid { display: block; overflow: visible; }
+      .graph-sim-row { grid-template-columns: 1.2fr 0.8fr; }
       .preview-page { width: 100%; min-width: auto; page-break-after: always; }
     }
   </style>
@@ -177,7 +332,7 @@
   <div class="wrap">
     <div class="hero">
       <div class="pill" id="heroHospital">宮崎中央眼科病院 近視進行予測</div>
-      <h1>リジュセアミニ点眼治療・オルソケラトロジー・マイサイト・併用治療の近視進行予測</h1>
+      <h1>近視抑制治療別の近視進行予測シミュレータ</h1>
       <p class="lead"><strong>予測は目安です。効果には個人差があります。</strong> この画面は、現在の年齢・度数・眼軸長・これまでの進み方から、今後どのように近視が進む可能性があるかを分かりやすく見るための説明用画面です。黒い線は治療をしない場合、青い線は治療を続けた場合、オレンジの線は途中で中断した場合の目安です。ご本人の経過や治療の継続状況、中断時期によって変化の仕方は異なるため、定期受診で確認していくことが大切です。</p>
     </div>
 
@@ -555,14 +710,24 @@
       return path;
     }
 
-    function buildSvgGraph(data, stopData, stopYear, unitFormatter, direction) {
+    function buildGraphPointMarkup(cx, cy, color, simId, seriesKey, seriesLabel, value, label, years) {
+      const valueText = formatD(value);
+      if (!simId) return `<circle cx="${cx}" cy="${cy}" r="4" fill="${color}" />`;
+      return `<g class="vision-plot-point" data-vision-point="true" data-sim-target="${esc(simId)}" data-series-key="${esc(seriesKey)}" data-series-label="${esc(seriesLabel)}" data-degree="${Number(value).toFixed(4)}" data-label="${esc(label)}" data-years="${Number(years).toFixed(2)}">
+        <title>${esc(seriesLabel)} ${esc(label)} ${esc(valueText)}</title>
+        <circle class="vision-hit" cx="${cx}" cy="${cy}" r="15"></circle>
+        <circle class="vision-dot" cx="${cx}" cy="${cy}" r="4.8" fill="${color}" stroke="#ffffff" stroke-width="2.5"></circle>
+      </g>`;
+    }
+
+    function buildSvgGraph(data, stopData, stopYear, unitFormatter, direction, simId = '') {
       const width = 900;
       const height = 320;
       const pad = { top: 22, right: 20, bottom: 42, left: 58 };
       const chartW = width - pad.left - pad.right;
       const chartH = height - pad.top - pad.bottom;
       const stopValues = stopData.filter(d => d.stopTx !== null).map(d => d.stopTx);
-      const values = data.flatMap(d => [d.noTx, d.txLow, d.txHigh]).concat(stopValues);
+      const values = data.reduce((arr, d) => { arr.push(d.noTx, d.txLow, d.txHigh); return arr; }, []).concat(stopValues);
       const min = Math.floor(Math.min(...values) * 10 - 5) / 10;
       const max = Math.ceil(Math.max(...values) * 10 + 5) / 10;
       const x = (i) => pad.left + (chartW * i / Math.max(1, data.length - 1));
@@ -587,8 +752,12 @@
       const noTxPath = smoothPath(noTxPoints);
       const txPath = smoothPath(txPoints);
       const stopPath = stopPlot.length ? smoothPath(stopPlot) : '';
-      const noTxDots = data.map((d, i) => `<circle cx="${x(i)}" cy="${y(d.noTx)}" r="4" fill="#111827" />`).join('');
+      const noTxDots = data.map((d, i) => buildGraphPointMarkup(x(i), y(d.noTx), '#111827', simId, 'noTx', '治療なし', d.noTx, d.label, d.years)).join('');
+      const txDots = data.map((d, i) => buildGraphPointMarkup(x(i), y(d.txCenter), '#2563eb', simId, 'tx', '治療あり継続', d.txCenter, d.label, d.years)).join('');
       const showStop = stopYear > 0 && stopPlot.length > 1;
+      const stopDots = showStop
+        ? stopData.map((d, i) => d.stopTx === null ? '' : buildGraphPointMarkup(x(i), y(d.stopTx), '#ea580c', simId, 'stop', '途中中断', d.stopTx, d.label, d.years)).join('')
+        : '';
       const stopX = xAtYears(Math.min(stopYear, data[data.length - 1].years));
       const bandFill = direction === 'minus' ? 'rgba(59,130,246,0.16)' : 'rgba(16,185,129,0.16)';
 
@@ -597,14 +766,216 @@
         ${showStop ? `<line x1="${stopX}" y1="${pad.top}" x2="${stopX}" y2="${height - pad.bottom}" stroke="#ea580c" stroke-width="2" stroke-dasharray="4 4"></line><text x="${Math.min(stopX + 8, width - 90)}" y="${pad.top + 14}" font-size="12" fill="#ea580c">ここで中断</text>` : ''}
         <polygon points="${bandTop} ${bandBottom}" fill="${bandFill}" stroke="none"></polygon>
         <path d="${noTxPath}" fill="none" stroke="#111827" stroke-width="3"></path>
-        ${noTxDots}
         <path d="${txPath}" fill="none" stroke="#2563eb" stroke-width="3" stroke-dasharray="8 6"></path>
         ${showStop ? `<path d="${stopPath}" fill="none" stroke="#ea580c" stroke-width="3"></path>` : ''}
+        ${noTxDots}
+        ${txDots}
+        ${stopDots}
         ${labels}
       </svg>`;
     }
 
-    function treatmentCopy(treatment, age, stopYear, reboundExtra, axialReboundExtra, mode) {
+    function blurPxFromDegree(degree) {
+      const absD = Math.abs(Number(degree) || 0);
+      if (absD < 0.25) return 0;
+      return Math.min(15, Math.max(0, absD * 1.85));
+    }
+
+    function visionMessageForDegree(degree) {
+      const a = Math.abs(Number(degree) || 0);
+      if (a < 0.5) return '軽い近視のイメージです。近くは見やすく、遠方も大きな見えにくさは少ない一方で、細かい文字では少しぼやけを感じることがあります。';
+      if (a < 1.0) return '近方は比較的見やすい一方で、教室の黒板の細かい文字が少し見えにくい可能性があります。';
+      if (a < 2.0) return '近くは見やすいことが多いですが、教室前方の黒板の文字や先生の表情はぼやけやすい状態です。席の位置によって見えにくさが出やすくなります。';
+      if (a < 3.0) return '近方は比較的見やすい一方で、教室前方の黒板の文字はかなり読みにくく、輪郭中心の見え方になりやすいイメージです。';
+      if (a < 6.0) return '強めの近視です。手元は比較的見やすくても、裸眼では教室前方の黒板の文字や先生の表情の判別が難しくなりやすい状態です。';
+      return '強度近視域のイメージです。近くは見やすいことがありますが、裸眼では教室前方の黒板や後方の細部が大きくぼやけ、文字の判別はかなり困難になりやすい状態です。';
+    }
+
+    function getVisionSceneParams(degree) {
+      const a = Math.abs(Number(degree) || 0);
+      const farBlur = blurPxFromDegree(degree);
+      const midBlur = Math.max(0, farBlur * 0.38);
+      const nearBlur = Math.max(0, Math.min(0.45, farBlur * 0.05));
+      const farContrast = Math.max(0.72, 1 - a * 0.025).toFixed(2);
+      const midContrast = Math.max(0.82, 1 - a * 0.012).toFixed(2);
+      const nearContrast = Math.max(0.96, 1 - a * 0.003).toFixed(2);
+      const opacity = Math.max(0.80, 1 - a * 0.015).toFixed(2);
+      const scale = (1 + Math.min(0.02, farBlur * 0.0012)).toFixed(3);
+      return { farBlur, midBlur, nearBlur, farContrast, midContrast, nearContrast, opacity, scale };
+    }
+
+    function visionSceneSvg(blur, degree) {
+      const params = getVisionSceneParams(degree);
+      return `<div class="vision-scene classroom-scene" style="opacity: ${params.opacity}; transform: scale(${params.scale});">
+        <div class="vision-layer" data-vision-zone="far" style="filter: blur(${params.farBlur.toFixed(1)}px) contrast(${params.farContrast});">
+          <div class="class-sky"></div>
+          <div class="class-wall"></div>
+          <div class="class-floor"></div>
+          <div class="window w1"></div>
+          <div class="window w2"></div>
+          <div class="blackboard">
+            <div class="chalk-text t1">A B C</div>
+            <div class="chalk-text t2">1 2 3</div>
+          </div>
+          <div class="clock"></div>
+          <div class="poster"></div>
+          <div class="teacher-desk"></div>
+        </div>
+        <div class="vision-layer" data-vision-zone="mid" style="filter: blur(${params.midBlur.toFixed(1)}px) contrast(${params.midContrast});">
+          <div class="teacher"><div class="hair"></div><div class="head"></div><div class="body"></div><div class="arm-l"></div><div class="arm-r"></div><div class="leg-l"></div><div class="leg-r"></div></div>
+          <div class="student s1"><div class="hair"></div><div class="head"></div><div class="body"></div><div class="desk"></div><div class="book"></div></div>
+          <div class="student s2"><div class="hair"></div><div class="head"></div><div class="body"></div><div class="desk"></div><div class="book"></div></div>
+          <div class="student s3"><div class="hair"></div><div class="head"></div><div class="body"></div><div class="desk"></div><div class="book"></div></div>
+          <div class="student s4"><div class="hair"></div><div class="head"></div><div class="body"></div><div class="desk"></div><div class="book"></div></div>
+          <div class="student s5"><div class="hair"></div><div class="head"></div><div class="body"></div><div class="desk"></div><div class="book"></div></div>
+          <div class="student s6"><div class="hair"></div><div class="head"></div><div class="body"></div><div class="desk"></div><div class="book"></div></div>
+        </div>
+        <div class="vision-layer" data-vision-zone="near" style="filter: blur(${params.nearBlur.toFixed(2)}px) contrast(${params.nearContrast});">
+          <div class="near-desk"></div>
+          <div class="notebook"></div>
+          <div class="worksheet"></div>
+          <div class="pencil"></div>
+          <div class="eraser"></div>
+          
+        </div>
+      </div>`;
+    }
+
+function buildVisionSimulatorHtml(simId, eyeLabel, degree, seriesLabel, pointLabel) {
+      const blur = blurPxFromDegree(degree);
+      return `<div class="vision-sim-card" data-vision-sim="${esc(simId)}">
+        <div class="vision-sim-head">
+          <div><div class="vision-sim-title">見え方シミュレーション</div><div class="vision-sim-sub"><span data-vision-label>${esc(eyeLabel)}・${esc(pointLabel)}・${esc(seriesLabel)}</span></div></div>
+          <div class="vision-degree-badge" data-vision-degree>${formatD(degree)}</div>
+        </div>
+        <div class="vision-scene-wrap">
+          ${visionSceneSvg(blur, degree)}
+        </div>
+        <div class="vision-sim-text" data-vision-text>${esc(visionMessageForDegree(degree))}</div>
+      </div>`;
+    }
+
+    
+    let compareSlotTurn = 0;
+
+    function getVisionSlotDataFromPoint(point) {
+      const degree = Number(point.dataset.degree) || 0;
+      const blur = blurPxFromDegree(degree);
+      const label = point.dataset.label || '';
+      const seriesLabel = point.dataset.seriesLabel || '';
+      const simId = point.dataset.simTarget || '';
+      const eyeLabel = simId.includes('right') ? '右眼' : (simId.includes('left') ? '左眼' : '');
+      return {
+        degree,
+        blur,
+        label,
+        seriesLabel,
+        simId,
+        eyeLabel,
+        message: visionMessageForDegree(degree),
+        sceneHtml: visionSceneSvg(blur, degree)
+      };
+    }
+
+    function renderVisionCompareSlot(slotEl, data, slotName) {
+      if (!slotEl) return;
+      if (!data) {
+        slotEl.className = 'vision-compare-slot empty';
+        slotEl.innerHTML = `${slotName}<br>グラフの点をタップすると<br>こちらに比較画像が表示されます`;
+        return;
+      }
+      slotEl.className = 'vision-compare-slot';
+      slotEl.innerHTML = `
+        <div class="vision-slot-head">
+          <div>
+            <div class="vision-slot-label">${slotName}</div>
+            <div class="vision-slot-title">見え方シミュレーション</div>
+            <div class="vision-slot-sub">${data.eyeLabel}・${data.label}・${data.seriesLabel}</div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end;">
+            <div class="vision-slot-degree">${formatD(data.degree)}</div>
+            <button type="button" class="vision-slot-clear" data-slot-clear="${slotName}">消す</button>
+          </div>
+        </div>
+        <div class="vision-slot-body">
+          <div class="vision-modal-scene">${data.sceneHtml}</div>
+          <div class="vision-modal-text">${data.message}</div>
+        </div>
+      `;
+    }
+
+    function refreshVisionCompareModal(slotAData, slotBData) {
+      const modal = document.getElementById('visionModal');
+      if (!modal) return;
+      const slotA = modal.querySelector('[data-compare-slot="A"]');
+      const slotB = modal.querySelector('[data-compare-slot="B"]');
+      renderVisionCompareSlot(slotA, slotAData, '比較A');
+      renderVisionCompareSlot(slotB, slotBData, '比較B');
+    }
+
+    function openVisionModalFromPoint(point) {
+      const modal = document.getElementById('visionModal');
+      if (!modal) return;
+
+      const nextData = getVisionSlotDataFromPoint(point);
+      const currentA = modal.dataset.slotA ? JSON.parse(modal.dataset.slotA) : null;
+      const currentB = modal.dataset.slotB ? JSON.parse(modal.dataset.slotB) : null;
+
+      let slotAData = currentA;
+      let slotBData = currentB;
+
+      if (!slotAData) {
+        slotAData = nextData;
+      } else if (!slotBData) {
+        slotBData = nextData;
+      } else {
+        compareSlotTurn = compareSlotTurn === 0 ? 1 : 0;
+        if (compareSlotTurn === 0) slotAData = nextData;
+        else slotBData = nextData;
+      }
+
+      modal.dataset.slotA = slotAData ? JSON.stringify(slotAData) : '';
+      modal.dataset.slotB = slotBData ? JSON.stringify(slotBData) : '';
+
+      document.querySelectorAll('.selected-vision-dot').forEach((el) => el.classList.remove('selected-vision-dot'));
+      point.classList.add('selected-vision-dot');
+
+      refreshVisionCompareModal(slotAData, slotBData);
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+    }
+
+    function clearVisionCompareSlot(slotName) {
+      const modal = document.getElementById('visionModal');
+      if (!modal) return;
+      if (slotName === '比較A') modal.dataset.slotA = '';
+      if (slotName === '比較B') modal.dataset.slotB = '';
+      const slotAData = modal.dataset.slotA ? JSON.parse(modal.dataset.slotA) : null;
+      const slotBData = modal.dataset.slotB ? JSON.parse(modal.dataset.slotB) : null;
+      refreshVisionCompareModal(slotAData, slotBData);
+      if (!slotAData && !slotBData) closeVisionModal();
+    }
+
+    function resetVisionCompareSlots() {
+      const modal = document.getElementById('visionModal');
+      if (!modal) return;
+      modal.dataset.slotA = '';
+      modal.dataset.slotB = '';
+      refreshVisionCompareModal(null, null);
+    }
+
+    function closeVisionModal() {
+      const modal = document.getElementById('visionModal');
+      if (!modal) return;
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+    }
+
+    function updateVisionSimulatorFromPoint(point) {
+      openVisionModalFromPoint(point);
+    }
+
+function treatmentCopy(treatment, age, stopYear, reboundExtra, axialReboundExtra, mode) {
       const curveText = mode === 'on'
         ? `現在 ${age}歳として、年齢が上がると10代後半で少し緩やかになり、20歳を超えるとさらにゆっくりになる想定を入れています。`
         : `年齢による変化を入れず、一定ペースで進む想定です。`;
@@ -662,7 +1033,7 @@
     function goToPage(index) {
       currentPage = Math.max(0, Math.min(index, treatmentList.length - 1));
       const width = els.previewGrid.clientWidth || 1;
-      els.previewGrid.scrollTo({ left: width * currentPage, behavior: 'smooth' });
+      safeScrollToLeft(els.previewGrid, width * currentPage, 'smooth');
       requestAnimationFrame(syncCurrentPageFromScroll);
     }
 
@@ -687,8 +1058,10 @@
         const rightAxStop = buildStopAxialData(form.rightAxial, form.rightAxialYearly, form.forecastYears, form.age, form.stopYear, form.axialReboundExtra, form.ageCurveMode, profile.axial);
         const leftAxStop = buildStopAxialData(form.leftAxial, form.leftAxialYearly, form.forecastYears, form.age, form.stopYear, form.axialReboundExtra, form.ageCurveMode, profile.axial);
 
-        const rightRefSvg = buildSvgGraph(rightRef, rightRefStop, form.stopYear, (v) => `${v.toFixed(1)}D`, 'minus');
-        const leftRefSvg = buildSvgGraph(leftRef, leftRefStop, form.stopYear, (v) => `${v.toFixed(1)}D`, 'minus');
+        const rightRefSimId = `vision-${item.key}-right-ref`;
+        const leftRefSimId = `vision-${item.key}-left-ref`;
+        const rightRefSvg = buildSvgGraph(rightRef, rightRefStop, form.stopYear, (v) => `${v.toFixed(1)}D`, 'minus', rightRefSimId);
+        const leftRefSvg = buildSvgGraph(leftRef, leftRefStop, form.stopYear, (v) => `${v.toFixed(1)}D`, 'minus', leftRefSimId);
         const rightAxSvg = buildSvgGraph(rightAx, rightAxStop, form.stopYear, (v) => `${v.toFixed(1)}mm`, 'plus');
         const leftAxSvg = buildSvgGraph(leftAx, leftAxStop, form.stopYear, (v) => `${v.toFixed(1)}mm`, 'plus');
 
@@ -728,8 +1101,10 @@
             <div class="graph-panel ${graphTabMode === 'refraction' ? 'active' : ''}" data-graph-panel="refraction">
               <div class="graph-message"><strong>黒い線</strong>は治療しない場合、<strong>青い線</strong>は治療を続けた場合、<strong>オレンジの線</strong>は途中で中断した場合の目安です。</div>
               <div class="legend"><span>黒線：治療なし</span><span>青破線：治療あり継続</span>${form.stopYear > 0 ? '<span class="stop-line">オレンジ線：途中で中断</span>' : ''}</div>
-              <div class="graph-message">右眼</div><div class="graph-wrap">${rightRefSvg}</div>
-              <div class="graph-message" style="margin-top:12px;">左眼</div><div class="graph-wrap">${leftRefSvg}</div>
+              <div class="graph-message">右眼　※黒・青・オレンジの点をタップすると、シミュレーション画像が大きく開きます</div>
+              <div class="graph-sim-row"><div class="graph-wrap">${rightRefSvg}</div></div>
+              <div class="graph-message" style="margin-top:12px;">左眼　※黒・青・オレンジの点をタップすると、シミュレーション画像が大きく開きます</div>
+              <div class="graph-sim-row"><div class="graph-wrap">${leftRefSvg}</div></div>
             </div>
 
             <div class="graph-panel ${graphTabMode === 'axial' ? 'active' : ''}" data-graph-panel="axial">
@@ -746,7 +1121,7 @@
 
       requestAnimationFrame(() => {
         const pageWidth = els.previewGrid.clientWidth || 1;
-        els.previewGrid.scrollTo({ left: pageWidth * currentPage, behavior: 'auto' });
+        safeScrollToLeft(els.previewGrid, pageWidth * currentPage, 'auto');
         syncCurrentPageFromScroll();
       });
     }
@@ -785,8 +1160,19 @@
       resizeTimer = setTimeout(render, 80);
     }
 
+    function safeScrollToLeft(element, left, behavior) {
+      if (!element) return;
+      try {
+        if (typeof element.scrollTo === 'function') {
+          element.scrollTo({ left, behavior });
+          return;
+        }
+      } catch (e) {}
+      element.scrollLeft = left;
+    }
+
     Object.values(els).forEach((el) => {
-      if (el instanceof HTMLInputElement) {
+      if (el && el.tagName === 'INPUT') {
         el.addEventListener('input', () => { saveForm(); scheduleRender(); });
         el.addEventListener('change', () => { saveForm(); scheduleRender(); });
       }
@@ -810,6 +1196,29 @@
       render();
     });
     document.addEventListener('click', (event) => {
+      const clearTarget = event.target.closest('[data-slot-clear]');
+      if (clearTarget) {
+        clearVisionCompareSlot(clearTarget.dataset.slotClear || '');
+        return;
+      }
+      const resetTarget = event.target.closest('[data-reset-vision-compare]');
+      if (resetTarget) {
+        resetVisionCompareSlots();
+        return;
+      }
+      const closeTarget = event.target.closest('[data-close-vision-modal]');
+      if (closeTarget || event.target.id === 'visionModal') {
+        closeVisionModal();
+        return;
+      }
+      const target = event.target.closest('[data-vision-point]');
+      if (!target) return;
+      updateVisionSimulatorFromPoint(target);
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeVisionModal();
+    });
+    document.addEventListener('click', (event) => {
       const target = event.target.closest('[data-graph]');
       if (!target) return;
       graphTabMode = target.dataset.graph || 'refraction';
@@ -829,5 +1238,27 @@
     setForm(loadForm());
     render();
   </script>
+
+  <div class="vision-modal" id="visionModal" aria-hidden="true" data-slot-a="" data-slot-b="">
+    <div class="vision-modal-card" role="dialog" aria-modal="true" aria-label="見え方比較シミュレーション">
+      <div class="vision-modal-head">
+        <div>
+          <div class="vision-modal-title">見え方比較シミュレーション</div>
+          <div class="vision-modal-sub">グラフの点を2つタップすると、比較A・比較Bに並べて表示できます</div>
+        </div>
+        <div class="vision-modal-actions">
+          <button type="button" class="vision-modal-reset" data-reset-vision-compare>比較をリセット</button>
+          <button type="button" class="vision-modal-close" data-close-vision-modal>閉じる</button>
+        </div>
+      </div>
+      <div class="vision-modal-body">
+        <div class="vision-compare-grid">
+          <div class="vision-compare-slot empty" data-compare-slot="A">比較A<br>グラフの点をタップすると<br>こちらに比較画像が表示されます</div>
+          <div class="vision-compare-slot empty" data-compare-slot="B">比較B<br>グラフの点をタップすると<br>こちらに比較画像が表示されます</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
